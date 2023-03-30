@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_28_185817) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_30_094749) do
+  create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "password"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "location", null: false
@@ -23,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_185817) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "post_id", null: false
+    t.string "name_img", null: false
     t.index ["post_id"], name: "index_images_on_post_id"
   end
 
@@ -47,10 +57,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_185817) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "company_id", null: false
+    t.integer "login"
     t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "unique_emails", unique: true
   end
 
+  add_foreign_key "accounts", "users"
   add_foreign_key "images", "posts"
   add_foreign_key "posts", "users"
   add_foreign_key "users", "companies"
