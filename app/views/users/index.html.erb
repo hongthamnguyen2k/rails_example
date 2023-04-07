@@ -1,0 +1,75 @@
+<style>
+
+  body {
+
+  }
+
+	h1 {
+    text-shadow: 2px 2px;
+    font-size: 70px;
+    text-align: center;
+    font-weight: bold;
+    color: #BDBDBD;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #D6EEEE;
+  }
+  a-primary {
+  	color: black;
+  }
+
+  a-primary {
+  	color: black;
+  }
+
+  button {
+    color: black;
+  }
+
+</style>
+
+<% flash.each do |key, value| %>
+<div class="alert alert-success">
+  <%= value %>
+  </div>
+  <% end %>
+  
+<h1>USER</h1>
+<body>
+
+<div class="col-md-10 col-lg-offset-1">
+  <table class="table text-center" style="border: 2px solid black;">
+  	<tr>
+  		<th>index</th>
+  		<th>Name</th>
+  		<th>Email</th>
+  		<th>Edit</th>
+      <th>Delete</th>
+      <th>Show</th>
+    </tr>
+      <% @users.each_with_index do |user, index| %>
+      <tr>
+        <td><%= create_index params[:page], index, 10 %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to "<button>Edit</button>".html_safe, edit_user_path(user), class: "a-primary" %></td>
+        <td><%= button_to 'Remove', user_path(user), method: 'delete', data: { confirm: 'Are you sure?' } %>
+        </td> 
+        <td><%= link_to "<button>Show</button>".html_safe, user_path(user), class: "a-primary" %></td>
+      </tr>
+      <% end %>     
+  </table>
+  <%= link_to "CREATE USER", new_user_path%>
+  <div><%= will_paginate @users, renderer: BootstrapPagination::Rails %></div>
+</div> 
+</body>
