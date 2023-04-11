@@ -1,10 +1,6 @@
 <style>
 
-  body {
-
-  }
-
-	h1 {
+  h1 {
     text-shadow: 2px 2px;
     font-size: 70px;
     text-align: center;
@@ -25,11 +21,11 @@
     background-color: #D6EEEE;
   }
   a-primary {
-  	color: black;
+    color: black;
   }
 
   a-primary {
-  	color: black;
+    color: black;
   }
 
   button {
@@ -45,15 +41,14 @@
   <% end %>
   
 <h1>USER</h1>
-<body>
 
 <div class="col-md-10 col-lg-offset-1">
   <table class="table text-center" style="border: 2px solid black;">
-  	<tr>
-  		<th>index</th>
-  		<th>Name</th>
-  		<th>Email</th>
-  		<th>Edit</th>
+    <tr>
+      <th>index</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Edit</th>
       <th>Delete</th>
       <th>Show</th>
     </tr>
@@ -72,4 +67,3 @@
   <%= link_to "CREATE USER", new_user_path%>
   <div><%= will_paginate @users, renderer: BootstrapPagination::Rails %></div>
 </div> 
-</body>
